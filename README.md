@@ -29,3 +29,5 @@ Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
     }
 });
 ```
+
+更详细的集成步骤，请参考[文档](https://github.com/Yodo1Games/MAS-Documents/blob/zh-cn/zh-cn/integration-android.md)
