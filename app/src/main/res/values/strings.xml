@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Yodo1 Mas Sdk Demo</string>
+    <string name="yodo1_demo_video">Show Rewarded Video Ad</string>
+    <string name="yodo1_demo_interstitial">Show Interstitial Ad</string>
+    <string name="yodo1_demo_banner">Show Banner Ad</string>
+    <string name="yodo1_demo_native">Show Native Ad</string>
+    <string name="yodo1_demo_gdpr">Set GDPR User Consent</string>
+    <string name="yodo1_demo_coppa">Set COPPA Age Restricted</string>
+    <string name="yodo1_demo_ccpa">Set CCPA Do Not Sell</string>
+    <string name="yodo1_applovin_mediation_debugger">AppLovin Mediation Debugger</string>
+    <string name="yodo1_admob_mediation_test">AdMob Mediation Test Suite</string>
+</resources>
