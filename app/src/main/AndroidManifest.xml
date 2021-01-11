@@ -22,7 +22,7 @@
         <!-- Setup 4. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7188592076082444~6397588552" />
+            android:value="Your AdMob App Id" />
 
     </application>
 
