@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.yodo1.demo">
 
     <application
@@ -22,7 +23,12 @@
         <!-- Setup 4. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="Your AdMob App Id" />
+            android:value="Your AdMob Id" />
+
+        <meta-data
+            android:name="LocalIsSensorProduction"
+            android:value="false"
+            tools:replace="android:value" />
 
     </application>
 
