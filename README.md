@@ -1,33 +1,49 @@
 # Yodo1-MAS-SDK-Android-Demo
-直接使用`AndroidStudio`打开
-- 修改`app`级别`build.gradle`文件的`applicationId`为自己游戏的`applicationId`
-```ruby
-defaultConfig {
+
+## Overview
+
+MAS is Yodo1's in-app monetization solution.
+
+Please check out our [documentation](https://support.yodo1.com/hc/en-us/articles/1500002038322) to get started on integrating.
+
+## Demo App
+
+To get started with the demo app, follow the instructions below:
+
+1. Open the project in Android Studio.
+2. Verify that the dependency implementation `'com.yodo1.mas:standard:+'` or `com.yodo1.mas:google:+` is included in your `build.gradle` (Module: app)
+3. Update `applicationId` value in `build.gradle` file with your application id.
+
+	```ruby
+	defaultConfig {
         applicationId "Your Application Id"
         ...
     }
-```
+	```
+	
+4. Update the `com.google.android.gms.ads.APPLICATION_ID` value in `AndroidManifest.xml` file with the `AdMob App Id` from your MAS account.
 
-- 修改`AndroidManifest.xml`文件的`com.google.android.gms.ads.APPLICATION_ID`为自己游戏的`AdMob App Id`
-```xml
-<meta-data
-    android:name="com.google.android.gms.ads.APPLICATION_ID"
-    android:value="Your AdMob App Id" />
-```
+	```xml
+	<meta-data
+	    android:name="com.google.android.gms.ads.APPLICATION_ID"
+	    android:value="Your AdMob App Id" />
+	```
+	
+5. Update the `AppId` value in `MainActivity.java` file with the `AppId` from your MAS account.
 
-- 修改`MainActivity.java`中`Yodo1Mas`初始化的`AppId`为自己游戏的`AppId`
-```java
-Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
-    @Override
-    public void onMasInitSuccessful() {
-        
-    }
+	```java
+	Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
+	    @Override
+	    public void onMasInitSuccessful() {
+	        
+	    }
+	
+	    @Override
+	    public void onMasInitFailed(@NonNull Yodo1MasError error) {
+	        
+	    }
+	});
+	```
 
-    @Override
-    public void onMasInitFailed(@NonNull Yodo1MasError error) {
-        
-    }
-});
-```
-
-更详细的集成步骤，请参考[文档](https://github.com/Yodo1Games/MAS-Documents/blob/zh-cn/zh-cn/integration-android.md)
+## Support
+For feature requests, improvements, questions or any other integration issues using MAS Mediation by Yodo1, please contact us via our support page: https://support.yodo1.com/hc/en-us.
