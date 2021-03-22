@@ -11,7 +11,7 @@ Please check out our [documentation](https://support.yodo1.com/hc/en-us/articles
 To get started with the demo app, follow the instructions below:
 
 1. Open the project in Android Studio.
-2. Verify that the dependency implementation `'com.yodo1.mas:standard:+'` or `com.yodo1.mas:google:+` is included in your `build.gradle` (Module: app)
+2. Verify that the dependency implementation `'com.yodo1.mas:full:+'` or `com.yodo1.mas:google:+` is included in your `build.gradle` (Module: app)
 3. Update `applicationId` value in `build.gradle` file with your application id.
 
 	```ruby
