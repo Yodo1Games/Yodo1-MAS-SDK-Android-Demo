@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.yodo1_demo_video).setOnClickListener(this::showVideo);
         findViewById(R.id.yodo1_demo_interstitial).setOnClickListener(this::showInterstitial);
         findViewById(R.id.yodo1_demo_banner).setOnClickListener(this::showBanner);
-        findViewById(R.id.yodo1_applovin_mediation_debugger).setOnClickListener(this::showAppLovinMediationDebugger);
-        findViewById(R.id.yodo1_admob_mediation_test).setOnClickListener(this::showAdMobMediationTestSuite);
+//        findViewById(R.id.yodo1_applovin_mediation_debugger).setOnClickListener(this::showAppLovinMediationDebugger);
+//        findViewById(R.id.yodo1_admob_mediation_test).setOnClickListener(this::showAdMobMediationTestSuite);
 
         SwitchMaterial gdpr = findViewById(R.id.yodo1_demo_gdpr);
         gdpr.setChecked(Yodo1Mas.getInstance().isGDPRUserConsent());
