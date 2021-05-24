@@ -17,10 +17,13 @@ import com.yodo1.mas.error.Yodo1MasError;
 import com.yodo1.mas.event.Yodo1MasAdEvent;
 
 import java.lang.reflect.Method;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
+    private Timer timer = new Timer();
 
     private final Yodo1Mas.RewardListener rewardListener = new Yodo1Mas.RewardListener() {
         @Override
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private final Yodo1Mas.BannerListener bannerListener = new Yodo1Mas.BannerListener() {
         @Override
         public void onAdOpened(@NonNull Yodo1MasAdEvent event) {
+
         }
 
         @Override
@@ -90,6 +94,17 @@ public class MainActivity extends AppCompatActivity {
         ccpa.setChecked(Yodo1Mas.getInstance().isCCPADoNotSell());
         ccpa.setOnCheckedChangeListener(this::setCCPA);
 
+        final TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                boolean isBannerLoad = Yodo1Mas.getInstance().isBannerAdLoaded();
+                if (isBannerLoad) {
+                    Yodo1Mas.getInstance().showBannerAd(MainActivity.this);
+                    timer.cancel();
+                }
+            }
+        };
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("sdk init...");
         progressDialog.setCancelable(false);
@@ -99,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onMasInitSuccessful() {
                 progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "sdk init successful", Toast.LENGTH_SHORT).show();
+                timer.schedule(timerTask, 0, 10000);
             }
 
             @Override
