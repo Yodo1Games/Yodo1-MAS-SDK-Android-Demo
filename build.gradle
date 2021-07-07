@@ -18,8 +18,9 @@ allprojects {
         jcenter()
         mavenCentral()
         // Setup 1.
+        maven { url "https://artifact.bytedance.com/repository/pangle" }
         maven { url "https://android-sdk.is.com" }
-        maven { url "https://fyber.bintray.com/marketplace"}
+        maven { url "https://sdk.tapjoy.com/" }
     }
 }
 
