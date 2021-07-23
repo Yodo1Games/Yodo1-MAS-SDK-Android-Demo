@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <Button
+            android:id="@+id/yodo1_demo_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/yodo1_demo_video"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/yodo1_demo_interstitial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/yodo1_demo_interstitial"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/yodo1_demo_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/yodo1_demo_banner"
+            android:textAllCaps="false" />
+
+       <!--  <Button
+            android:id="@+id/yodo1_applovin_mediation_debugger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/yodo1_applovin_mediation_debugger"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/yodo1_admob_mediation_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/yodo1_admob_mediation_test"
+            android:textAllCaps="false" /> -->
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/yodo1_demo_gdpr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/yodo1_demo_gdpr" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/yodo1_demo_coppa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/yodo1_demo_coppa" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/yodo1_demo_ccpa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/yodo1_demo_ccpa" />
+    </LinearLayout>
+</ScrollView>

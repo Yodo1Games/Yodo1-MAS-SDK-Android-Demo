@@ -10,7 +10,7 @@ Please check out our [documentation](https://developers.yodo1.com/article-catego
 
 To get started with the demo app, follow the instructions below:
 
-1. Open the project in Android Studio.
+1. Open your desired project in Android Studio: Yodo1-MAS-SDK-Android-Demo-Java or Yodo1-MAS-SDK-Android-Demo-Kotlin.
 2. Verify that the dependency implementation `'com.yodo1.mas:full:+'` or `com.yodo1.mas:google:+` is included in your `build.gradle` (Module: app)
 3. Update `applicationId` value in `build.gradle` file with your application id.
 
@@ -28,8 +28,11 @@ To get started with the demo app, follow the instructions below:
 	    android:name="com.google.android.gms.ads.APPLICATION_ID"
 	    android:value="Your AdMob App Id" />
 	```
+5. 	Update the `AppId` value with the `AppId` from your MAS account.
+
+	5.1. Yodo1-MAS-SDK-Android-Demo-Java 
 	
-5. Update the `AppId` value in `MainActivity.java` file with the `AppId` from your MAS account.
+	Update the `AppId` value in `MainActivity.java` file with the `AppId` from your MAS account.
 
 	```java
 	Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
@@ -43,6 +46,21 @@ To get started with the demo app, follow the instructions below:
 	        
 	    }
 	});
+	```
+	5.2 Yodo1-MAS-SDK-Android-Demo-Kotlin
+	
+	Update the `AppId` value in `MainActivity.kt` file with the `AppId` from your MAS account.
+	
+	```
+	Yodo1Mas.getInstance().init(this, "Your App Id", object : Yodo1Mas.InitListener {
+            override fun onMasInitSuccessful() {
+               
+            }
+
+            override fun onMasInitFailed(error: Yodo1MasError) {
+                
+            }
+        })
 	```
 
 ## Support
