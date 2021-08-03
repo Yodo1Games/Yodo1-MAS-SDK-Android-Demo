@@ -150,7 +150,23 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Banner ad has not been cached.", Toast.LENGTH_SHORT).show();
             return;
         }
-        Yodo1Mas.getInstance().showBannerAd(this);
+        String placement = "placementId";
+
+        /**
+         * banner alignment, align = vertical | horizontal
+         *              vertical:
+         *              Yodo1Mas.BannerTop
+         *              Yodo1Mas.BannerBottom
+         *              Yodo1Mas.BannerVerticalCenter
+         *              horizontal:
+         *              Yodo1Mas.BannerLeft
+         *              Yodo1Mas.BannerRight
+         */
+        int align = Yodo1Mas.BannerBottom | Yodo1Mas.BannerHorizontalCenter;
+
+        int offsetX = 0; // horizontal offset, offsetX > 0, the banner will move to the right. offsetX < 0, the banner will move to the left. if align = Yodo1Mas.BannerLeft, offsetX < 0 is invalid
+        int offsetY = 0; // vertical offset, offsetY > 0, the banner will move to the bottom. offsetY < 0, the banner will move to the top.if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
+        Yodo1Mas.getInstance().showBannerAd(this, placement, align, offsetX, offsetY);
     }
 
     private void showAppLovinMediationDebugger(View v) {

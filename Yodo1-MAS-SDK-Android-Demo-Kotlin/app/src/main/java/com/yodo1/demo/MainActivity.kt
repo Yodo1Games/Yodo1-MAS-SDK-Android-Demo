@@ -131,7 +131,28 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Banner ad has not been cached.", Toast.LENGTH_SHORT).show()
             return
         }
-        Yodo1Mas.getInstance().showBannerAd(this)
+
+        val placement = "placementId"
+
+        /**
+         * banner alignment, align = vertical | horizontal
+         *              vertical:
+         *              Yodo1Mas.BannerTop
+         *              Yodo1Mas.BannerBottom
+         *              Yodo1Mas.BannerVerticalCenter
+         *              horizontal:
+         *              Yodo1Mas.BannerLeft
+         *              Yodo1Mas.BannerRight
+         */
+        val align = Yodo1Mas.BannerBottom or Yodo1Mas.BannerHorizontalCenter
+
+        val offsetX =
+            0 // horizontal offset, offsetX > 0, the banner will move to the right. offsetX < 0, the banner will move to the left. if align = Yodo1Mas.BannerLeft, offsetX < 0 is invalid
+
+        val offsetY =
+            0 // vertical offset, offsetY > 0, the banner will move to the bottom. offsetY < 0, the banner will move to the top.if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
+
+        Yodo1Mas.getInstance().showBannerAd(this, placement, align, offsetX, offsetY)
     }
 
     private fun showAppLovinMediationDebugger(v: View) {
