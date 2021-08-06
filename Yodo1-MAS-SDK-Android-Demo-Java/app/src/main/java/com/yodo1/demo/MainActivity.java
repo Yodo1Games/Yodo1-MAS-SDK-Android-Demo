@@ -185,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
          *  offsetY > 0, the banner will move to the bottom.
          *  offsetY < 0, the banner will move to the top.
          *  if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
+         *
+         *  Click here to see more details: https://developers.yodo1.com/knowledge-base/android-banner-configuration/
          */
         int offsetX = 0;
         int offsetY = 0;
