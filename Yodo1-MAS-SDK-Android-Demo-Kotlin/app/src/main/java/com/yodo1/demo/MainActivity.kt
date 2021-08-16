@@ -131,7 +131,51 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Banner ad has not been cached.", Toast.LENGTH_SHORT).show()
             return
         }
-        Yodo1Mas.getInstance().showBannerAd(this)
+
+        val placement = "placementId"
+
+        /**
+         * 'align' will determine the general position of the banner, such as:
+         *       - top horizontal center
+         *       - bottom horizontal center
+         *       - left vertical center
+         *       - right vertical center
+         *       - horizontal vertical center
+         *        The above 5 positions can basically meet most of the needs
+         *
+         * align = vertical | horizontal
+         *              vertical:
+         *              Yodo1Mas.BannerTop
+         *              Yodo1Mas.BannerBottom
+         *              Yodo1Mas.BannerVerticalCenter
+         *              horizontal:
+         *              Yodo1Mas.BannerLeft
+         *              Yodo1Mas.BannerRight
+         */
+        val align = Yodo1Mas.BannerBottom or Yodo1Mas.BannerHorizontalCenter
+
+        /**
+         * 'offset' will adjust the position of the banner on the basis of 'align'
+         *  If 'align' cannot meet the demand, you can adjust it by 'offset'
+         *
+         *  horizontal offset:
+         *  offsetX > 0, the banner will move to the right.
+         *  offsetX < 0, the banner will move to the left.
+         *  if align = Yodo1Mas.BannerLeft, offsetX < 0 is invalid
+         *
+         *  vertical offset:
+         *  offsetY > 0, the banner will move to the bottom.
+         *  offsetY < 0, the banner will move to the top.
+         *  if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
+         *
+         *  Click here to see more details: https://developers.yodo1.com/knowledge-base/android-banner-configuration/
+         */
+        val offsetX =
+            0
+        val offsetY =
+            0
+
+        Yodo1Mas.getInstance().showBannerAd(this, placement, align, offsetX, offsetY)
     }
 
     private fun showAppLovinMediationDebugger(v: View) {
