@@ -7,23 +7,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.google.android.ads.mediationtestsuite.MediationTestSuite;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.yodo1.mas.Yodo1Mas;
 import com.yodo1.mas.error.Yodo1MasError;
 import com.yodo1.mas.event.Yodo1MasAdEvent;
+import com.yodo1.mas.helper.model.Yodo1MasAdBuildConfig;
 
 import java.lang.reflect.Method;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
-    private Timer timer = new Timer();
 
     private final Yodo1Mas.RewardListener rewardListener = new Yodo1Mas.RewardListener() {
         @Override
@@ -84,37 +80,22 @@ public class MainActivity extends AppCompatActivity {
 //        findViewById(R.id.yodo1_applovin_mediation_debugger).setOnClickListener(this::showAppLovinMediationDebugger);
 //        findViewById(R.id.yodo1_admob_mediation_test).setOnClickListener(this::showAdMobMediationTestSuite);
 
-        SwitchMaterial gdpr = findViewById(R.id.yodo1_demo_gdpr);
-        gdpr.setChecked(Yodo1Mas.getInstance().isGDPRUserConsent());
-        gdpr.setOnCheckedChangeListener(this::setGDPR);
-        SwitchMaterial coppa = findViewById(R.id.yodo1_demo_coppa);
-        coppa.setChecked(Yodo1Mas.getInstance().isCOPPAAgeRestricted());
-        coppa.setOnCheckedChangeListener(this::setCOPPA);
-        SwitchMaterial ccpa = findViewById(R.id.yodo1_demo_ccpa);
-        ccpa.setChecked(Yodo1Mas.getInstance().isCCPADoNotSell());
-        ccpa.setOnCheckedChangeListener(this::setCCPA);
-
-        final TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                boolean isBannerLoad = Yodo1Mas.getInstance().isBannerAdLoaded();
-                if (isBannerLoad) {
-                    Yodo1Mas.getInstance().showBannerAd(MainActivity.this);
-                    timer.cancel();
-                }
-            }
-        };
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("sdk init...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
+
+        Yodo1MasAdBuildConfig config = new Yodo1MasAdBuildConfig.Builder()
+                .enableAdaptiveBanner(true)
+                .enableUserPrivacyDialog(true)
+                .build();
+        Yodo1Mas.getInstance().setAdBuildConfig(config);
+
+        Yodo1Mas.getInstance().init(this, "1BUpPjJgws", new Yodo1Mas.InitListener() {
             @Override
             public void onMasInitSuccessful() {
                 progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "sdk init successful", Toast.LENGTH_SHORT).show();
-                timer.schedule(timerTask, 0, 10000);
             }
 
             @Override
@@ -126,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         Yodo1Mas.getInstance().setRewardListener(rewardListener);
         Yodo1Mas.getInstance().setInterstitialListener(interstitialListener);
         Yodo1Mas.getInstance().setBannerListener(bannerListener);
+
+        Yodo1Mas.getInstance().showBannerAd(MainActivity.this, "mas_test");
     }
 
 
@@ -209,15 +192,4 @@ public class MainActivity extends AppCompatActivity {
         MediationTestSuite.launch(this);
     }
 
-    private void setGDPR(CompoundButton buttonView, boolean isChecked) {
-        Yodo1Mas.getInstance().setGDPR(isChecked);
-    }
-
-    private void setCOPPA(CompoundButton buttonView, boolean isChecked) {
-        Yodo1Mas.getInstance().setCOPPA(isChecked);
-    }
-
-    private void setCCPA(CompoundButton buttonView, boolean isChecked) {
-        Yodo1Mas.getInstance().setCCPA(isChecked);
-    }
 }
