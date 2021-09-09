@@ -23,7 +23,7 @@
         <!-- Setup 4. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="Your AdMob Id" />
+            android:value="Your AdMob App ID" />
 
         <meta-data
             android:name="LocalIsSensorProduction"

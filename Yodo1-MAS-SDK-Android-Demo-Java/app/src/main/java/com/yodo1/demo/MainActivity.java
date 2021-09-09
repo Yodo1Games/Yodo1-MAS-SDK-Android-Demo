@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Yodo1Mas.getInstance().setAdBuildConfig(config);
 
-        Yodo1Mas.getInstance().init(this, "1BUpPjJgws", new Yodo1Mas.InitListener() {
+        Yodo1Mas.getInstance().init(this, "Your AppKey", new Yodo1Mas.InitListener() {
             @Override
             public void onMasInitSuccessful() {
                 progressDialog.dismiss();

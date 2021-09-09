@@ -21,21 +21,21 @@ To get started with the demo app, follow the instructions below:
     }
 	```
 	
-4. Update the `com.google.android.gms.ads.APPLICATION_ID` value in `AndroidManifest.xml` file with the `AdMob App Id` from your MAS account.
+4. Update the `com.google.android.gms.ads.APPLICATION_ID` value in `AndroidManifest.xml` file with the `AdMob App ID` from your MAS account.
 
 	```xml
 	<meta-data
 	    android:name="com.google.android.gms.ads.APPLICATION_ID"
-	    android:value="Your AdMob App Id" />
+	    android:value="Your AdMob App ID" />
 	```
-5. 	Update the `AppId` value with the `AppId` from your MAS account.
+5. 	Update the `AppKey` value with the `AppKey` from your MAS account.
 
 	5.1. Yodo1-MAS-SDK-Android-Demo-Java 
 	
-	Update the `AppId` value in `MainActivity.java` file with the `AppId` from your MAS account.
+	Update the `AppKey` value in `MainActivity.java` file with the `AppKey` from your MAS account.
 
 	```java
-	Yodo1Mas.getInstance().init(this, "Your App Id", new Yodo1Mas.InitListener() {
+	Yodo1Mas.getInstance().init(this, "Your AppKey", new Yodo1Mas.InitListener() {
 	    @Override
 	    public void onMasInitSuccessful() {
 	        
@@ -49,10 +49,10 @@ To get started with the demo app, follow the instructions below:
 	```
 	5.2 Yodo1-MAS-SDK-Android-Demo-Kotlin
 	
-	Update the `AppId` value in `MainActivity.kt` file with the `AppId` from your MAS account.
+	Update the `AppKey` value in `MainActivity.kt` file with the `AppKey` from your MAS account.
 	
 	```
-	Yodo1Mas.getInstance().init(this, "Your App Id", object : Yodo1Mas.InitListener {
+	Yodo1Mas.getInstance().init(this, "Your AppKey", object : Yodo1Mas.InitListener {
             override fun onMasInitSuccessful() {
                
             }

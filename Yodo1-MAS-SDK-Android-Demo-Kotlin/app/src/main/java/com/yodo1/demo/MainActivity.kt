@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             .build()
         Yodo1Mas.getInstance().setAdBuildConfig(config)
 
-        Yodo1Mas.getInstance().init(this, "Your App Id", object : Yodo1Mas.InitListener {
+        Yodo1Mas.getInstance().init(this, "Your AppKey", object : Yodo1Mas.InitListener {
             override fun onMasInitSuccessful() {
                 progressDialog!!.dismiss()
                 Toast.makeText(this@MainActivity, "sdk init successful", Toast.LENGTH_SHORT).show()
