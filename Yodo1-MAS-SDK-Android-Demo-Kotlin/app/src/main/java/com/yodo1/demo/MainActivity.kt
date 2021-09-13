@@ -4,20 +4,17 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.ads.mediationtestsuite.MediationTestSuite
-import com.google.android.material.switchmaterial.SwitchMaterial
 import com.yodo1.mas.Yodo1Mas
 import com.yodo1.mas.Yodo1Mas.RewardListener
 import com.yodo1.mas.error.Yodo1MasError
 import com.yodo1.mas.event.Yodo1MasAdEvent
-import java.util.*
+import com.yodo1.mas.helper.model.Yodo1MasAdBuildConfig
 
 class MainActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
-    private val timer = Timer()
     private val rewardListener: RewardListener = object : RewardListener() {
         override fun onAdOpened(event: Yodo1MasAdEvent) {}
         override fun onAdvertRewardEarned(event: Yodo1MasAdEvent) {}
@@ -55,48 +52,21 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.yodo1_demo_banner).setOnClickListener { v: View -> showBanner(v) }
         //        findViewById(R.id.yodo1_applovin_mediation_debugger).setOnClickListener(this::showAppLovinMediationDebugger);
 //        findViewById(R.id.yodo1_admob_mediation_test).setOnClickListener(this::showAdMobMediationTestSuite);
-        val gdpr = findViewById<SwitchMaterial>(R.id.yodo1_demo_gdpr)
-        gdpr.isChecked = Yodo1Mas.getInstance().isGDPRUserConsent
-        gdpr.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            setGDPR(
-                buttonView,
-                isChecked
-            )
-        }
-        val coppa = findViewById<SwitchMaterial>(R.id.yodo1_demo_coppa)
-        coppa.isChecked = Yodo1Mas.getInstance().isCOPPAAgeRestricted
-        coppa.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            setCOPPA(
-                buttonView,
-                isChecked
-            )
-        }
-        val ccpa = findViewById<SwitchMaterial>(R.id.yodo1_demo_ccpa)
-        ccpa.isChecked = Yodo1Mas.getInstance().isCCPADoNotSell
-        ccpa.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            setCCPA(
-                buttonView,
-                isChecked
-            )
-        }
-        val timerTask: TimerTask = object : TimerTask() {
-            override fun run() {
-                val isBannerLoad = Yodo1Mas.getInstance().isBannerAdLoaded
-                if (isBannerLoad) {
-                    Yodo1Mas.getInstance().showBannerAd(this@MainActivity)
-                    timer.cancel()
-                }
-            }
-        }
         progressDialog = ProgressDialog(this)
         progressDialog!!.setTitle("sdk init...")
         progressDialog!!.setCancelable(false)
         progressDialog!!.show()
-        Yodo1Mas.getInstance().init(this, "Your App Id", object : Yodo1Mas.InitListener {
+
+        val config = Yodo1MasAdBuildConfig.Builder()
+            .enableAdaptiveBanner(true)
+            .enableUserPrivacyDialog(true)
+            .build()
+        Yodo1Mas.getInstance().setAdBuildConfig(config)
+
+        Yodo1Mas.getInstance().init(this, "Your AppKey", object : Yodo1Mas.InitListener {
             override fun onMasInitSuccessful() {
                 progressDialog!!.dismiss()
                 Toast.makeText(this@MainActivity, "sdk init successful", Toast.LENGTH_SHORT).show()
-                timer.schedule(timerTask, 0, 10000)
             }
 
             override fun onMasInitFailed(error: Yodo1MasError) {
@@ -107,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         Yodo1Mas.getInstance().setRewardListener(rewardListener)
         Yodo1Mas.getInstance().setInterstitialListener(interstitialListener)
         Yodo1Mas.getInstance().setBannerListener(bannerListener)
+        Yodo1Mas.getInstance().showBannerAd(this@MainActivity, "mas_test")
     }
 
     private fun showVideo(v: View) {
@@ -131,50 +102,46 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Banner ad has not been cached.", Toast.LENGTH_SHORT).show()
             return
         }
-
         val placement = "placementId"
 
         /**
          * 'align' will determine the general position of the banner, such as:
-         *       - top horizontal center
-         *       - bottom horizontal center
-         *       - left vertical center
-         *       - right vertical center
-         *       - horizontal vertical center
-         *        The above 5 positions can basically meet most of the needs
+         * - top horizontal center
+         * - bottom horizontal center
+         * - left vertical center
+         * - right vertical center
+         * - horizontal vertical center
+         * The above 5 positions can basically meet most of the needs
          *
          * align = vertical | horizontal
-         *              vertical:
-         *              Yodo1Mas.BannerTop
-         *              Yodo1Mas.BannerBottom
-         *              Yodo1Mas.BannerVerticalCenter
-         *              horizontal:
-         *              Yodo1Mas.BannerLeft
-         *              Yodo1Mas.BannerRight
+         * vertical:
+         * Yodo1Mas.BannerTop
+         * Yodo1Mas.BannerBottom
+         * Yodo1Mas.BannerVerticalCenter
+         * horizontal:
+         * Yodo1Mas.BannerLeft
+         * Yodo1Mas.BannerRight
          */
         val align = Yodo1Mas.BannerBottom or Yodo1Mas.BannerHorizontalCenter
 
         /**
          * 'offset' will adjust the position of the banner on the basis of 'align'
-         *  If 'align' cannot meet the demand, you can adjust it by 'offset'
+         * If 'align' cannot meet the demand, you can adjust it by 'offset'
          *
-         *  horizontal offset:
-         *  offsetX > 0, the banner will move to the right.
-         *  offsetX < 0, the banner will move to the left.
-         *  if align = Yodo1Mas.BannerLeft, offsetX < 0 is invalid
+         * horizontal offset:
+         * offsetX > 0, the banner will move to the right.
+         * offsetX < 0, the banner will move to the left.
+         * if align = Yodo1Mas.BannerLeft, offsetX < 0 is invalid
          *
-         *  vertical offset:
-         *  offsetY > 0, the banner will move to the bottom.
-         *  offsetY < 0, the banner will move to the top.
-         *  if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
+         * vertical offset:
+         * offsetY > 0, the banner will move to the bottom.
+         * offsetY < 0, the banner will move to the top.
+         * if align = Yodo1Mas.BannerTop, offsetY < 0 is invalid
          *
-         *  Click here to see more details: https://developers.yodo1.com/knowledge-base/android-banner-configuration/
+         * Click here to see more details: https://developers.yodo1.com/knowledge-base/android-banner-configuration/
          */
-        val offsetX =
-            0
-        val offsetY =
-            0
-
+        val offsetX = 0
+        val offsetY = 0
         Yodo1Mas.getInstance().showBannerAd(this, placement, align, offsetX, offsetY)
     }
 
@@ -193,17 +160,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAdMobMediationTestSuite(v: View) {
         MediationTestSuite.launch(this)
-    }
-
-    private fun setGDPR(buttonView: CompoundButton, isChecked: Boolean) {
-        Yodo1Mas.getInstance().setGDPR(isChecked)
-    }
-
-    private fun setCOPPA(buttonView: CompoundButton, isChecked: Boolean) {
-        Yodo1Mas.getInstance().setCOPPA(isChecked)
-    }
-
-    private fun setCCPA(buttonView: CompoundButton, isChecked: Boolean) {
-        Yodo1Mas.getInstance().setCCPA(isChecked)
     }
 }

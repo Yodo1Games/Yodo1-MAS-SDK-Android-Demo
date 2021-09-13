@@ -48,23 +48,5 @@
             android:layout_marginTop="10dp"
             android:text="@string/yodo1_admob_mediation_test"
             android:textAllCaps="false" /> -->
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/yodo1_demo_gdpr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/yodo1_demo_gdpr" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/yodo1_demo_coppa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/yodo1_demo_coppa" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/yodo1_demo_ccpa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/yodo1_demo_ccpa" />
     </LinearLayout>
 </ScrollView>

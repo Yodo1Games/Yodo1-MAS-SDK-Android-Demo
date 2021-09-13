@@ -35,8 +35,8 @@ android {
 dependencies {
 
     // Setup 3.
-    api 'com.yodo1.mas:full:4.2.1'
-//    api 'com.yodo1.mas:google:4.2.1' //If your game is participating in the Google Play "Developed For Families" program, please use this dependencies
+    api 'com.yodo1.mas:full:+'
+//    api 'com.yodo1.mas:google:+' //If your game is participating in the Google Play "Developed For Families" program, please use this dependencies
 
     api 'com.google.android.ads:mediation-test-suite:1.5.0'
 

@@ -13,7 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         lintOptions {
             abortOnError false
         }
@@ -35,15 +34,12 @@ android {
 dependencies {
 
     // Setup 3.
-    api 'com.yodo1.mas:full:4.2.1'
-//    api 'com.yodo1.mas:google:4.2.1' //If your game is participating in the Google Play "Developed For Families" program, please use this dependencies
+    api 'com.yodo1.mas:full:+'
+//    api 'com.yodo1.mas:google:+' //If your game is participating in the Google Play "Developed For Families" program, please use this dependencies
 
-    api 'com.google.android.ads:mediation-test-suite:1.5.0'
+    api 'com.google.android.ads:mediation-test-suite:2.0.0'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
